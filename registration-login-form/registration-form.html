@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Registro</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px 0;
+        }
+        .registration-form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+        .form-group {
+            position: relative;
+            margin-bottom: 20px;
+        }
+        .form-control {
+            font-size: 15px;
+            padding-left: 40px;
+            padding-right: 10px;
+        }
+        .icon-left {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #000000;
+        }
+        .icon-right {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #000000;
+            cursor: pointer;
+        }
+        .btn-register {
+            background-color: #000000;
+            border-color: #979797;
+            color: #f0efef;
+            width: 100%;
+        }
+        .btn-register:hover {
+            background-color: #119427;
+            border-color: #000000;
+        }
+        .login-link {
+            color: #000000;
+            text-decoration: none;
+        }
+        .login-link:hover {
+            color: #088b08;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="registration-form">
+        <h2 class="text-center mb-4">Registro</h2>
+        <form>
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-group">
+                        <i class="fas fa-user icon-left"></i>
+                        <input type="text" class="form-control" placeholder="Nome" required>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="form-group">
+                        <i class="fas fa-user icon-left"></i>
+                        <input type="text" class="form-control" placeholder="Sobrenome" required>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-envelope icon-left"></i>
+                <input type="email" class="form-control" placeholder="E-mail" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-calendar icon-left"></i>
+                <input type="date" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-lock icon-left"></i>
+                <input type="password" class="form-control" id="password" placeholder="Crie uma senha" required>
+                <i class="fas fa-eye icon-right toggle-password" data-target="password"></i>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-lock icon-left"></i>
+                <input type="password" class="form-control" id="confirmPassword" placeholder="Confirme a senha" required>
+                <i class="fas fa-eye icon-right toggle-password" data-target="confirmPassword"></i>
+            </div>
+            <button type="submit" class="btn btn-register mb-3">Registrar</button>
+            <div class="text-center">
+                <a href="login-form.html" class="login-link">Já é membro? Faça login</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Função para alternar a visibilidade da senha
+        function togglePasswordVisibility(inputId, iconElement) {
+            const input = document.getElementById(inputId);
+            if (input.type === 'password') {
+                input.type = 'text';
+                iconElement.classList.remove('fa-eye');
+                iconElement.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                iconElement.classList.remove('fa-eye-slash');
+                iconElement.classList.add('fa-eye');
+            }
+        }
+
+        // Adicionar evento de clique para os ícones de mostrar/ocultar senha
+        document.querySelectorAll('.toggle-password').forEach(icon => {
+            icon.addEventListener('click', function() {
+                const targetId = this.getAttribute('data-target');
+                togglePasswordVisibility(targetId, this);
+            });
+        });
+
+        // Validação do formulário
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirmPassword');
+            if (password.value !== confirmPassword.value) {
+                alert('As senhas não coincidem. Por favor, tente novamente.');
+                return false;
+            }
+            // Aqui você pode adicionar o código para enviar o formulário
+            alert('Formulário enviado com sucesso!');
+        });
+    </script>
+</body>
+</html>
